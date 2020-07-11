@@ -14,9 +14,9 @@ const List = (props) => (
             if (value.completed === false) {
               return (
                 <li key={index} className="list-item">
-                  {/* <span onClick={() => props.handleEdit(todo)}> */}
+                  <span onClick={() => props.handleEdit(value.id)}>
                   {value.title}
-                  {/* </span> */}
+                  </span>
                   <span
                     className="btn btn-outline-danger"
                     onClick={() => props.handleComp(value.id)}
