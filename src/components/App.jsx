@@ -38,26 +38,24 @@ export default class App extends Component {
            });
            this.setState({ todo: this.state.todo });
            e.target.title.value = "";
-           currentId++;
+      currentId++;
+      console.log(this.state.todo)
          }
   }
 
   handleRemove(i) {
-    console.log(i)
-    const newTodos = this.state.todo.filter(v => v.id !== i)
+    const newTodos = this.state.todo.filter(todo => todo.id !== i)
     this.setState({ todo: newTodos });
-    currentId--;
 
-    console.log(this.state.todo)
   }
 
   handleComp(i) {
-    console.log(i)
-    const compTodo = this.state.todo.slice()
-    compTodo[i].completed = true;
-    this.setState({ todo: compTodo });
-        console.log(this.state.todo);
-
+    const C = this.state.todo.slice();
+    const N = this.state.todo.findIndex(index => index.id === i)
+        console.log(N);
+    C[N].completed = true;
+    console.log(C[N]);
+    this.setState({ todo: C });
   }
 
   handleSwitch(t) {
@@ -74,9 +72,8 @@ export default class App extends Component {
 
 
   render() {
-    const trueDate = this.state.todo.filter(({ completed }) => completed === true);
-    const falseDate = this.state.todo.filter(({ completed }) => completed === false);
-    if (trueDate.length >= 5) {
+    const K = this.state.todo.filter( value => value.completed === true);
+    if (K.length >= 5) {
       return (
         <Goal />
       );
@@ -87,11 +84,19 @@ export default class App extends Component {
         <Form input={this.state.input} handleAdd={this.handleAdd} />
         <h2>TODOリスト</h2>
         <div className="list-all">
-        <div className="list-class">
-            <List todos={falseDate}   handleRemove={this.handleRemove} handleComp={this.handleComp}/>
-        </div>
-        <div className="sublist">
-            <Sublist sublists={trueDate} filter={this.state.filter} handleSwitch={this.handleSwitch}/>
+          <div className="list-class">
+            <List
+              todo={this.state.todo}
+              handleRemove={this.handleRemove}
+              handleComp={this.handleComp}
+            />
+          </div>
+          <div className="sublist">
+            <Sublist
+              todo={this.state.todo}
+              filter={this.state.filter}
+              handleSwitch={this.handleSwitch}
+            />
           </div>
         </div>
       </div>
