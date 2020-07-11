@@ -7,18 +7,24 @@ let style = {
 const Sublist = (props) => (
     <div style={style}> 
     <button className="btn btn-outline-danger"
-        onClick={() => props.handleSwitch(props.todo)}>
+        onClick={() => props.handleSwitch()}>
         {props.filter ? "表示" : "表示してるよ"}
      </button>
         {(() => {
             if (props.filter === false) {
                 return (
                     <ul className="list">
-                        {props.sublists.map((value, index) => {
+                        {props.todo.map((value, index) => {
                             return (
-                                <li key={index} className="list-item">
-                                    {value.title}
-                                </li>
+                                (() => {
+                                    if (value.completed === true) {
+                                        return (
+                                            <li key={index} className="list-item">
+                                                {value.title}
+                                            </li>
+                                        )
+                                    }
+                                })()
                             )
                         })}
                     </ul>

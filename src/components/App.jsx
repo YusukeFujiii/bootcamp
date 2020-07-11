@@ -58,8 +58,9 @@ export default class App extends Component {
     this.setState({ todo: C });
   }
 
-  handleSwitch(t) {
-    if (t.length > 0 )
+  handleSwitch() {
+        const K = this.state.todo.filter((value) => value.completed === true);
+    if (K.length > 0 )
     {
       this.setState({ filter: false })
     }
