@@ -1,0 +1,22 @@
+
+
+
+.App {
+  margin: 0 auto;
+  width: 700px;
+  text-align: center;
+  background-color: gray;
+}
+
+.list-all{
+display:flex;	
+justify-content: center;
+}
+
+.list-class{
+  display: inline-block;
+}
+
+ul{
+  list-style: none;
+}
